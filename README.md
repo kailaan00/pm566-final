@@ -1,2 +1,3 @@
-My PM566 Final Project Website. See my webpage: https://kailaan00.github.io/pm566-final/
+This is my PM566 final project website home. The website is online at
+https://kailaan00.github.io/pm566-final/
 

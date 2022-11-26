@@ -11,8 +11,6 @@ This is my PM566 Final Project website.
 
 <br>
 
-# Lab Setup
-
 ```{r setup, message=FALSE, echo=FALSE, warning=FALSE}
 library(data.table)
 library(tidyverse)
@@ -33,6 +31,25 @@ opts_chunk$set(
   fig.asp = 0.618,
   out.width = "700px")
 ```
+
+## Download the whole HTML report: 
+**HTML REPORT** [**click here**]()
+
+## Description
+
+The COVID-19 pandemic had changed the world as we knew it like no other occurrence before. It changed people’s lifestyles, their habits, and overall created a “new normal”. People’s mindsets and priorities have changed so drastically, that it would be interesting to note whether or not it brought a change to criminal behavior and activity. For this project, I chose to focus on Los Angeles City Data, specifically, ‘Crime Data in LA from 2020 to present’ and ‘Crime Data in LA from 2010 to 2019’. These particular data sets document incidents of crime, transcribed from crime reports. This data has been provided by the Los Angeles Police Department. Based on these data sets, the question I would like to address is:
+
+How has the prevalence of certain types of crimes in Los Angeles changed since the start of the COVID-19 pandemic?
+
+```{r}
+# Read in the data
+crime201019 <- data.table::fread("crimedata_2010to2019.csv")
+crime202022 <- data.table::fread("crimedata_2020topresent.csv")
+```
+
+
+
+## Showcasing plots {.tabset}
 
 ```{r}
 source("process_COVID_data.R")
@@ -60,10 +77,9 @@ p2_scatter <- cv_states_today_scatter %>%
   layout(title = "Population-normalized COVID-19 deaths vs. population density",
                   yaxis = list(title = "Deaths per 100k"), xaxis = list(title = "Population Density"),
          hovermode = "compare")
+
 ```
 
-
-## Showcasing plots {.tabset}
 
 ### Tab 1
 
