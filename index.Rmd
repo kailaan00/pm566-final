@@ -41,59 +41,63 @@ The COVID-19 pandemic had changed the world as we knew it like no other occurren
 
 How has the prevalence of certain types of crimes in Los Angeles changed since the start of the COVID-19 pandemic?
 
+## Reading in and Checking the Data
+
 ```{r}
 # Read in the data
 crime201019 <- data.table::fread("crimedata_2010to2019.csv")
 crime202022 <- data.table::fread("crimedata_2020topresent.csv")
 ```
 
-
-
-## Showcasing plots {.tabset}
+#Checking the Data
 
 ```{r}
-source("process_COVID_data.R")
-p1_scatter <- cv_states_today %>% 
-  plot_ly(x = ~pop_density, y = ~deathsper100k,
-          type = 'scatter', mode = 'markers', color = ~state,
-          size = ~population, sizes = c(5, 70), marker = list(sizemode='diameter', opacity=0.5),
-          hoverinfo = 'text',
-          text = ~paste( paste(state, ":", sep=""), paste(" Cases per 100k: ", per100k, sep="") , paste(" Deaths per 100k: ",
-                        deathsper100k, sep=""), sep = "<br>")) %>%
-  layout(title = "Population-normalized COVID-19 deaths vs. population density",
-                  yaxis = list(title = "Deaths per 100k"), xaxis = list(title = "Population Density"),
-         hovermode = "compare")
+str(crime202022)
+str(crime201019)
 
-# filter out "District of Columbia"
-cv_states_today_scatter <- cv_states_today %>% filter(state!="District of Columbia")
+dim(crime201019)
+dim(crime202022)
 
-p2_scatter <- cv_states_today_scatter %>% 
-  plot_ly(x = ~pop_density, y = ~deathsper100k,
-          type = 'scatter', mode = 'markers', color = ~state,
-          size = ~population, sizes = c(5, 70), marker = list(sizemode='diameter', opacity=0.5),
-          hoverinfo = 'text',
-          text = ~paste( paste(state, ":", sep=""), paste(" Cases per 100k: ", per100k, sep="") , paste(" Deaths per 100k: ",
-                        deathsper100k, sep=""), sep = "<br>")) %>%
-  layout(title = "Population-normalized COVID-19 deaths vs. population density",
-                  yaxis = list(title = "Deaths per 100k"), xaxis = list(title = "Population Density"),
-         hovermode = "compare")
+head(crime201019)
+head(crime202022)
 
+tail(crime201019)
+tail(crime202022)
+```
+
+## Top 5 Crime Types
+#For the period of 2010-19 (pre-pandemic) and the period of 2020-present (during the pandemic)
+
+```{r}
+CrimeType <-
+  crime201019 %>%
+  count(`Crm Cd Desc`)
+
+CrimeType %>%
+  arrange(desc(n)) %>%
+  top_n(5) %>%
+knitr::kable(caption = "Prevalence of Different Types of Crimes in LA County 2010-2019")
+```
+
+```{r}
+CrimeType <-
+  crime202022 %>%
+  count(`Crm Cd Desc`)
+
+CrimeType %>%
+  arrange(desc(n)) %>%
+  top_n(5) %>%
+knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crimes in LA County 2020-Present")
 ```
 
 
-### Tab 1
 
-```{r echo=FALSE}
-p1_scatter
-```
 
-### Tab 2
 
-```{r echo=FALSE}
-p2_scatter
-```
 
-## {-}
+
+
+
 
 
 
