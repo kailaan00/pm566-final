@@ -1,5 +1,5 @@
 ---
-title: "PM566 Final Project"
+title: "Comparing the Changing Prevalence of Different Types of Crimes in LA County Before and During the COVID-19 Pandemic"
 author: "Kaila An"
 output: 
     html_document:
