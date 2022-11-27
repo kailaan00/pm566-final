@@ -80,10 +80,6 @@ tail(crime201019)
 tail(crime202022)
 ```
 
-```{r, echo=FALSE}
-sort(table(crime201019$`AREA NAME`))
-```
-
 
 ## Top 5 Crime Types
 For the period of 2010-19 (pre-pandemic) and the period of 2020-present (during the pandemic)
