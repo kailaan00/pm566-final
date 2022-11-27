@@ -115,7 +115,11 @@ knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crim
 
 ## Data Visualization
 
+<br>
+
 ### Top 5 Crimes vs. Regions
+
+<br>
 
 ### Change over time in crime orevalence
 
@@ -134,7 +138,7 @@ Showcasing plots {.tabset}
 
 ## {-}
 
-
+<br>
 
 ### Premise vs. Crime
 
