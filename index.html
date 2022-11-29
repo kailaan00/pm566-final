@@ -11,13 +11,14 @@
 
 <meta name="author" content="Kaila An" />
 
+<meta name="date" content="2022-11-27" />
 
 <title>Comparing the Changing Prevalence of Different Types of Crimes in LA County Before and During the COVID-19 Pandemic</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -329,7 +330,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home - Final Project</a>
+  <a href="index.html">Home</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -355,17 +356,14 @@ div.tocify {
 Different Types of Crimes in LA County Before and During the COVID-19
 Pandemic</h1>
 <h4 class="author">Kaila An</h4>
+<h4 class="date">11/27/2022</h4>
 
 </div>
 
 
-<p>This is my PM566 Final Project website.</p>
+<p><strong>Download the whole HTML report:</strong> <strong>HTML
+REPORT</strong> <a href=""><strong>click here</strong></a></p>
 <p><br></p>
-<div id="download-the-whole-html-report" class="section level2">
-<h2>Download the whole HTML report:</h2>
-<p><strong>HTML REPORT</strong> <a href=""><strong>click
-here</strong></a></p>
-</div>
 <div id="description" class="section level2">
 <h2>Description</h2>
 <p>The COVID-19 pandemic had changed the world as we knew it like no
@@ -381,393 +379,7 @@ the Los Angeles Police Department. Based on these data sets, the
 question I would like to address is:</p>
 <p>How has the prevalence of certain types of crimes in Los Angeles
 changed since the start of the COVID-19 pandemic?</p>
-</div>
-<div id="reading-in-and-checking-the-data" class="section level2">
-<h2>Reading in and Checking the Data</h2>
-<pre class="r"><code># Read in the data
-crime201019 &lt;- data.table::fread(&quot;crimedata_2010to2019.csv&quot;)
-crime202022 &lt;- data.table::fread(&quot;crimedata_2020topresent.csv&quot;)</code></pre>
-<p>#Checking the Data</p>
-<pre class="r"><code>str(crime202022)</code></pre>
-<pre><code>## Classes &#39;data.table&#39; and &#39;data.frame&#39;:   581764 obs. of  28 variables:
-##  $ DR_NO         : int  10304468 190101086 200110444 191501505 191921269 200100501 200100502 200100504 200100507 201710201 ...
-##  $ Date Rptd     : chr  &quot;01/08/2020 12:00:00 AM&quot; &quot;01/02/2020 12:00:00 AM&quot; &quot;04/14/2020 12:00:00 AM&quot; &quot;01/01/2020 12:00:00 AM&quot; ...
-##  $ DATE OCC      : chr  &quot;01/08/2020 12:00:00 AM&quot; &quot;01/01/2020 12:00:00 AM&quot; &quot;02/13/2020 12:00:00 AM&quot; &quot;01/01/2020 12:00:00 AM&quot; ...
-##  $ TIME OCC      : int  2230 330 1200 1730 415 30 1315 40 200 1925 ...
-##  $ AREA          : int  3 1 1 15 19 1 1 1 1 17 ...
-##  $ AREA NAME     : chr  &quot;Southwest&quot; &quot;Central&quot; &quot;Central&quot; &quot;N Hollywood&quot; ...
-##  $ Rpt Dist No   : int  377 163 155 1543 1998 163 161 155 101 1708 ...
-##  $ Part 1-2      : int  2 2 2 2 2 1 1 2 1 1 ...
-##  $ Crm Cd        : int  624 624 845 745 740 121 442 946 341 341 ...
-##  $ Crm Cd Desc   : chr  &quot;BATTERY - SIMPLE ASSAULT&quot; &quot;BATTERY - SIMPLE ASSAULT&quot; &quot;SEX OFFENDER REGISTRANT OUT OF COMPLIANCE&quot; &quot;VANDALISM - MISDEAMEANOR ($399 OR UNDER)&quot; ...
-##  $ Mocodes       : chr  &quot;0444 0913&quot; &quot;0416 1822 1414&quot; &quot;1501&quot; &quot;0329 1402&quot; ...
-##  $ Vict Age      : int  36 25 0 76 31 25 23 0 23 0 ...
-##  $ Vict Sex      : chr  &quot;F&quot; &quot;M&quot; &quot;X&quot; &quot;F&quot; ...
-##  $ Vict Descent  : chr  &quot;B&quot; &quot;H&quot; &quot;X&quot; &quot;W&quot; ...
-##  $ Premis Cd     : int  501 102 726 502 409 735 404 726 502 203 ...
-##  $ Premis Desc   : chr  &quot;SINGLE FAMILY DWELLING&quot; &quot;SIDEWALK&quot; &quot;POLICE FACILITY&quot; &quot;MULTI-UNIT DWELLING (APARTMENT, DUPLEX, ETC)&quot; ...
-##  $ Weapon Used Cd: int  400 500 NA NA NA 500 NA NA NA NA ...
-##  $ Weapon Desc   : chr  &quot;STRONG-ARM (HANDS, FIST, FEET OR BODILY FORCE)&quot; &quot;UNKNOWN WEAPON/OTHER WEAPON&quot; &quot;&quot; &quot;&quot; ...
-##  $ Status        : chr  &quot;AO&quot; &quot;IC&quot; &quot;AA&quot; &quot;IC&quot; ...
-##  $ Status Desc   : chr  &quot;Adult Other&quot; &quot;Invest Cont&quot; &quot;Adult Arrest&quot; &quot;Invest Cont&quot; ...
-##  $ Crm Cd 1      : int  624 624 845 745 740 121 442 946 341 341 ...
-##  $ Crm Cd 2      : int  NA NA NA 998 NA 998 998 998 998 NA ...
-##  $ Crm Cd 3      : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ Crm Cd 4      : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ LOCATION      : chr  &quot;1100 W  39TH                         PL&quot; &quot;700 S  HILL                         ST&quot; &quot;200 E  6TH                          ST&quot; &quot;5400    CORTEEN                      PL&quot; ...
-##  $ Cross Street  : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ LAT           : num  34 34 34 34.2 34.2 ...
-##  $ LON           : num  -118 -118 -118 -118 -118 ...
-##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
-<pre class="r"><code>str(crime201019)</code></pre>
-<pre><code>## Classes &#39;data.table&#39; and &#39;data.frame&#39;:   2119797 obs. of  28 variables:
-##  $ DR_NO         : int  1307355 11401303 70309629 90631215 100100501 100100506 100100508 100100509 100100510 100100511 ...
-##  $ Date Rptd     : chr  &quot;02/20/2010 12:00:00 AM&quot; &quot;09/13/2010 12:00:00 AM&quot; &quot;08/09/2010 12:00:00 AM&quot; &quot;01/05/2010 12:00:00 AM&quot; ...
-##  $ DATE OCC      : chr  &quot;02/20/2010 12:00:00 AM&quot; &quot;09/12/2010 12:00:00 AM&quot; &quot;08/09/2010 12:00:00 AM&quot; &quot;01/05/2010 12:00:00 AM&quot; ...
-##  $ TIME OCC      : int  1350 45 1515 150 2100 1650 2005 2100 230 2100 ...
-##  $ AREA          : int  13 14 13 6 1 1 1 1 1 1 ...
-##  $ AREA NAME     : chr  &quot;Newton&quot; &quot;Pacific&quot; &quot;Newton&quot; &quot;Hollywood&quot; ...
-##  $ Rpt Dist No   : int  1385 1485 1324 646 176 162 182 157 171 132 ...
-##  $ Part 1-2      : int  2 2 2 2 1 1 1 1 1 1 ...
-##  $ Crm Cd        : int  900 740 946 900 122 442 330 230 230 341 ...
-##  $ Crm Cd Desc   : chr  &quot;VIOLATION OF COURT ORDER&quot; &quot;VANDALISM - FELONY ($400 &amp; OVER, ALL CHURCH VANDALISMS)&quot; &quot;OTHER MISCELLANEOUS CRIME&quot; &quot;VIOLATION OF COURT ORDER&quot; ...
-##  $ Mocodes       : chr  &quot;0913 1814 2000&quot; &quot;0329&quot; &quot;0344&quot; &quot;1100 0400 1402&quot; ...
-##  $ Vict Age      : int  48 0 0 47 47 23 46 51 30 55 ...
-##  $ Vict Sex      : chr  &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;F&quot; ...
-##  $ Vict Descent  : chr  &quot;H&quot; &quot;W&quot; &quot;H&quot; &quot;W&quot; ...
-##  $ Premis Cd     : int  501 101 103 101 103 404 101 710 108 710 ...
-##  $ Premis Desc   : chr  &quot;SINGLE FAMILY DWELLING&quot; &quot;STREET&quot; &quot;ALLEY&quot; &quot;STREET&quot; ...
-##  $ Weapon Used Cd: int  NA NA NA 102 400 NA NA 500 400 NA ...
-##  $ Weapon Desc   : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;HAND GUN&quot; ...
-##  $ Status        : chr  &quot;AA&quot; &quot;IC&quot; &quot;IC&quot; &quot;IC&quot; ...
-##  $ Status Desc   : chr  &quot;Adult Arrest&quot; &quot;Invest Cont&quot; &quot;Invest Cont&quot; &quot;Invest Cont&quot; ...
-##  $ Crm Cd 1      : int  900 740 946 900 122 442 330 230 230 341 ...
-##  $ Crm Cd 2      : int  NA NA NA 998 NA NA NA NA NA 998 ...
-##  $ Crm Cd 3      : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ Crm Cd 4      : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ LOCATION      : chr  &quot;300 E  GAGE                         AV&quot; &quot;SEPULVEDA                    BL&quot; &quot;1300 E  21ST                         ST&quot; &quot;CAHUENGA                     BL&quot; ...
-##  $ Cross Street  : chr  &quot;&quot; &quot;MANCHESTER                   AV&quot; &quot;&quot; &quot;HOLLYWOOD                    BL&quot; ...
-##  $ LAT           : num  34 34 34 34.1 34 ...
-##  $ LON           : num  -118 -118 -118 -118 -118 ...
-##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
-<pre class="r"><code>dim(crime201019)</code></pre>
-<pre><code>## [1] 2119797      28</code></pre>
-<pre class="r"><code>dim(crime202022)</code></pre>
-<pre><code>## [1] 581764     28</code></pre>
-<pre class="r"><code>head(crime201019)</code></pre>
-<pre><code>##        DR_NO              Date Rptd               DATE OCC TIME OCC AREA
-## 1:   1307355 02/20/2010 12:00:00 AM 02/20/2010 12:00:00 AM     1350   13
-## 2:  11401303 09/13/2010 12:00:00 AM 09/12/2010 12:00:00 AM       45   14
-## 3:  70309629 08/09/2010 12:00:00 AM 08/09/2010 12:00:00 AM     1515   13
-## 4:  90631215 01/05/2010 12:00:00 AM 01/05/2010 12:00:00 AM      150    6
-## 5: 100100501 01/03/2010 12:00:00 AM 01/02/2010 12:00:00 AM     2100    1
-## 6: 100100506 01/05/2010 12:00:00 AM 01/04/2010 12:00:00 AM     1650    1
-##    AREA NAME Rpt Dist No Part 1-2 Crm Cd
-## 1:    Newton        1385        2    900
-## 2:   Pacific        1485        2    740
-## 3:    Newton        1324        2    946
-## 4: Hollywood         646        2    900
-## 5:   Central         176        1    122
-## 6:   Central         162        1    442
-##                                                Crm Cd Desc        Mocodes
-## 1:                                VIOLATION OF COURT ORDER 0913 1814 2000
-## 2: VANDALISM - FELONY ($400 &amp; OVER, ALL CHURCH VANDALISMS)           0329
-## 3:                               OTHER MISCELLANEOUS CRIME           0344
-## 4:                                VIOLATION OF COURT ORDER 1100 0400 1402
-## 5:                                         RAPE, ATTEMPTED           0400
-## 6:                SHOPLIFTING - PETTY THEFT ($950 &amp; UNDER)      0344 1402
-##    Vict Age Vict Sex Vict Descent Premis Cd            Premis Desc
-## 1:       48        M            H       501 SINGLE FAMILY DWELLING
-## 2:        0        M            W       101                 STREET
-## 3:        0        M            H       103                  ALLEY
-## 4:       47        F            W       101                 STREET
-## 5:       47        F            H       103                  ALLEY
-## 6:       23        M            B       404       DEPARTMENT STORE
-##    Weapon Used Cd                                    Weapon Desc Status
-## 1:             NA                                                    AA
-## 2:             NA                                                    IC
-## 3:             NA                                                    IC
-## 4:            102                                       HAND GUN     IC
-## 5:            400 STRONG-ARM (HANDS, FIST, FEET OR BODILY FORCE)     IC
-## 6:             NA                                                    AA
-##     Status Desc Crm Cd 1 Crm Cd 2 Crm Cd 3 Crm Cd 4
-## 1: Adult Arrest      900       NA       NA       NA
-## 2:  Invest Cont      740       NA       NA       NA
-## 3:  Invest Cont      946       NA       NA       NA
-## 4:  Invest Cont      900      998       NA       NA
-## 5:  Invest Cont      122       NA       NA       NA
-## 6: Adult Arrest      442       NA       NA       NA
-##                                   LOCATION                    Cross Street
-## 1:  300 E  GAGE                         AV                                
-## 2:         SEPULVEDA                    BL MANCHESTER                   AV
-## 3: 1300 E  21ST                         ST                                
-## 4:         CAHUENGA                     BL HOLLYWOOD                    BL
-## 5:         8TH                          ST SAN PEDRO                    ST
-## 6:  700 W  7TH                          ST                                
-##        LAT       LON
-## 1: 33.9825 -118.2695
-## 2: 33.9599 -118.3962
-## 3: 34.0224 -118.2524
-## 4: 34.1016 -118.3295
-## 5: 34.0387 -118.2488
-## 6: 34.0480 -118.2577</code></pre>
-<pre class="r"><code>head(crime202022)</code></pre>
-<pre><code>##        DR_NO              Date Rptd               DATE OCC TIME OCC AREA
-## 1:  10304468 01/08/2020 12:00:00 AM 01/08/2020 12:00:00 AM     2230    3
-## 2: 190101086 01/02/2020 12:00:00 AM 01/01/2020 12:00:00 AM      330    1
-## 3: 200110444 04/14/2020 12:00:00 AM 02/13/2020 12:00:00 AM     1200    1
-## 4: 191501505 01/01/2020 12:00:00 AM 01/01/2020 12:00:00 AM     1730   15
-## 5: 191921269 01/01/2020 12:00:00 AM 01/01/2020 12:00:00 AM      415   19
-## 6: 200100501 01/02/2020 12:00:00 AM 01/01/2020 12:00:00 AM       30    1
-##      AREA NAME Rpt Dist No Part 1-2 Crm Cd
-## 1:   Southwest         377        2    624
-## 2:     Central         163        2    624
-## 3:     Central         155        2    845
-## 4: N Hollywood        1543        2    745
-## 5:     Mission        1998        2    740
-## 6:     Central         163        1    121
-##                                                Crm Cd Desc             Mocodes
-## 1:                                BATTERY - SIMPLE ASSAULT           0444 0913
-## 2:                                BATTERY - SIMPLE ASSAULT      0416 1822 1414
-## 3:               SEX OFFENDER REGISTRANT OUT OF COMPLIANCE                1501
-## 4:                VANDALISM - MISDEAMEANOR ($399 OR UNDER)           0329 1402
-## 5: VANDALISM - FELONY ($400 &amp; OVER, ALL CHURCH VANDALISMS)                0329
-## 6:                                          RAPE, FORCIBLE 0413 1822 1262 1415
-##    Vict Age Vict Sex Vict Descent Premis Cd
-## 1:       36        F            B       501
-## 2:       25        M            H       102
-## 3:        0        X            X       726
-## 4:       76        F            W       502
-## 5:       31        X            X       409
-## 6:       25        F            H       735
-##                                     Premis Desc Weapon Used Cd
-## 1:                       SINGLE FAMILY DWELLING            400
-## 2:                                     SIDEWALK            500
-## 3:                              POLICE FACILITY             NA
-## 4: MULTI-UNIT DWELLING (APARTMENT, DUPLEX, ETC)             NA
-## 5:                          BEAUTY SUPPLY STORE             NA
-## 6:              NIGHT CLUB (OPEN EVENINGS ONLY)            500
-##                                       Weapon Desc Status  Status Desc Crm Cd 1
-## 1: STRONG-ARM (HANDS, FIST, FEET OR BODILY FORCE)     AO  Adult Other      624
-## 2:                    UNKNOWN WEAPON/OTHER WEAPON     IC  Invest Cont      624
-## 3:                                                    AA Adult Arrest      845
-## 4:                                                    IC  Invest Cont      745
-## 5:                                                    IC  Invest Cont      740
-## 6:                    UNKNOWN WEAPON/OTHER WEAPON     IC  Invest Cont      121
-##    Crm Cd 2 Crm Cd 3 Crm Cd 4                                 LOCATION
-## 1:       NA       NA       NA  1100 W  39TH                         PL
-## 2:       NA       NA       NA   700 S  HILL                         ST
-## 3:       NA       NA       NA   200 E  6TH                          ST
-## 4:      998       NA       NA  5400    CORTEEN                      PL
-## 5:       NA       NA       NA 14400    TITUS                        ST
-## 6:      998       NA       NA                          700 S  BROADWAY
-##    Cross Street     LAT       LON
-## 1:              34.0141 -118.2978
-## 2:              34.0459 -118.2545
-## 3:              34.0448 -118.2474
-## 4:              34.1685 -118.4019
-## 5:              34.2198 -118.4468
-## 6:              34.0452 -118.2534</code></pre>
-<pre class="r"><code>tail(crime201019)</code></pre>
-<pre><code>##        DR_NO              Date Rptd               DATE OCC TIME OCC AREA
-## 1: 190906699 02/24/2019 12:00:00 AM 02/23/2019 12:00:00 AM     2220    9
-## 2: 190506304 02/22/2019 12:00:00 AM 02/22/2019 12:00:00 AM      840    5
-## 3: 190608903 03/28/2019 12:00:00 AM 03/28/2019 12:00:00 AM      400    6
-## 4: 192004409 01/06/2019 12:00:00 AM 01/06/2019 12:00:00 AM     2100   20
-## 5: 191716777 10/17/2019 12:00:00 AM 10/16/2019 12:00:00 AM     1800   17
-## 6: 190805435 02/01/2019 12:00:00 AM 02/01/2019 12:00:00 AM     1615    8
-##     AREA NAME Rpt Dist No Part 1-2 Crm Cd
-## 1:   Van Nuys         904        1    210
-## 2:     Harbor         569        2    627
-## 3:  Hollywood         644        1    648
-## 4:    Olympic        2029        2    930
-## 5: Devonshire        1795        1    420
-## 6:    West LA         852        1    330
-##                                        Crm Cd Desc
-## 1:                                         ROBBERY
-## 2:         CHILD ABUSE (PHYSICAL) - SIMPLE ASSAULT
-## 3:                                           ARSON
-## 4:          CRIMINAL THREATS - NO WEAPON DISPLAYED
-## 5: THEFT FROM MOTOR VEHICLE - PETTY ($950 &amp; UNDER)
-## 6:                           BURGLARY FROM VEHICLE
-##                                         Mocodes Vict Age Vict Sex Vict Descent
-## 1:      0344 0302 0334 0355 1310 1420 1822 0354       30        F            W
-## 2:                          0443 0419 0416 1259       14        F            W
-## 3:                                    0601 1501        0        X            X
-## 4: 0432 0421 0340 0305 0444 0429 0537 1218 0216       46        F            B
-## 5:                                                     0                      
-## 6:           1302 1609 0358 1307 0344 0377 0321       33        F            W
-##    Premis Cd                                         Premis Desc Weapon Used Cd
-## 1:       101                                              STREET            107
-## 2:       109                                     PARK/PLAYGROUND            400
-## 3:       706 SEX ORIENTED/BOOK STORE/STRIP CLUB/GENTLEMAN&#39;S CLUB            506
-## 4:       102                                            SIDEWALK            400
-## 5:       101                                              STREET             NA
-## 6:       707                                      GARAGE/CARPORT             NA
-##                                       Weapon Desc Status Status Desc Crm Cd 1
-## 1:                                  OTHER FIREARM     IC Invest Cont      210
-## 2: STRONG-ARM (HANDS, FIST, FEET OR BODILY FORCE)     AO Adult Other      627
-## 3:                                           FIRE     IC Invest Cont      648
-## 4: STRONG-ARM (HANDS, FIST, FEET OR BODILY FORCE)     IC Invest Cont      930
-## 5:                                                    IC Invest Cont      420
-## 6:                                                    IC Invest Cont      330
-##    Crm Cd 2 Crm Cd 3 Crm Cd 4                                 LOCATION
-## 1:      998       NA       NA  7600    WILLIS                       AV
-## 2:       NA       NA       NA   100 W  22ND                         ST
-## 3:       NA       NA       NA  1400 N  LA BREA                      AV
-## 4:       NA       NA       NA                                      6TH
-## 5:       NA       NA       NA 17200    NAPA                         ST
-## 6:       NA       NA       NA  1700    BARRY                        AV
-##    Cross Street     LAT       LON
-## 1:              34.2085 -118.4553
-## 2:              33.7257 -118.2801
-## 3:              34.0962 -118.3490
-## 4:       VIRGIL 34.0637 -118.2870
-## 5:              34.2266 -118.5085
-## 6:              34.0420 -118.4531</code></pre>
-<pre class="r"><code>tail(crime202022)</code></pre>
-<pre><code>##        DR_NO              Date Rptd               DATE OCC TIME OCC AREA
-## 1: 220211676 06/09/2022 12:00:00 AM 06/09/2022 12:00:00 AM     1730    2
-## 2: 221213384 06/07/2022 12:00:00 AM 06/07/2022 12:00:00 AM     1900   12
-## 3: 220314584 08/02/2022 12:00:00 AM 08/02/2022 12:00:00 AM       10    3
-## 4: 221005507 02/10/2022 12:00:00 AM 02/09/2022 12:00:00 AM     1530   10
-## 5: 221105477 02/10/2022 12:00:00 AM 02/08/2022 12:00:00 AM     2000   11
-## 6: 221605448 02/15/2022 12:00:00 AM 02/14/2022 12:00:00 AM     1800   16
-##      AREA NAME Rpt Dist No Part 1-2 Crm Cd
-## 1:     Rampart         239        1    210
-## 2: 77th Street        1249        2    626
-## 3:   Southwest         334        2    354
-## 4: West Valley        1024        1    510
-## 5:   Northeast        1171        1    510
-## 6:    Foothill        1613        1    331
-##                                            Crm Cd Desc
-## 1:                                             ROBBERY
-## 2:                   INTIMATE PARTNER - SIMPLE ASSAULT
-## 3:                                   THEFT OF IDENTITY
-## 4:                                    VEHICLE - STOLEN
-## 5:                                    VEHICLE - STOLEN
-## 6: THEFT FROM MOTOR VEHICLE - GRAND ($950.01 AND OVER)
-##                                         Mocodes Vict Age Vict Sex Vict Descent
-## 1: 0344 0432 1822 0334 0302 0355 1310 0216 1227       33        M            H
-## 2:      0448 0400 0913 1813 1243 0429 2002 2021       57        F            B
-## 3:                               0100 1822 0922       34        F            H
-## 4:                                                     0                      
-## 5:                                                     0                      
-## 6:                                    0385 1300       61        F            H
-##    Premis Cd                                  Premis Desc Weapon Used Cd
-## 1:       101                                       STREET            109
-## 2:       502 MULTI-UNIT DWELLING (APARTMENT, DUPLEX, ETC)            400
-## 3:       501                       SINGLE FAMILY DWELLING             NA
-## 4:       108                                  PARKING LOT             NA
-## 5:       101                                       STREET             NA
-## 6:       101                                       STREET             NA
-##                                       Weapon Desc Status Status Desc Crm Cd 1
-## 1:                          SEMI-AUTOMATIC PISTOL     IC Invest Cont      210
-## 2: STRONG-ARM (HANDS, FIST, FEET OR BODILY FORCE)     AO Adult Other      626
-## 3:                                                    IC Invest Cont      354
-## 4:                                                    IC Invest Cont      510
-## 5:                                                    IC Invest Cont      510
-## 6:                                                    IC Invest Cont      331
-##    Crm Cd 2 Crm Cd 3 Crm Cd 4                                 LOCATION
-## 1:       NA       NA       NA   100 N  BEAUDRY                      AV
-## 2:       NA       NA       NA  6600 S  HOOVER                       ST
-## 3:       NA       NA       NA  4300 W  28TH                         ST
-## 4:       NA       NA       NA 18800    SHERMAN                      WY
-## 5:       NA       NA       NA  4000    FOUNTAIN                     AV
-## 6:       NA       NA       NA 12700    VAN NUYS                     BL
-##    Cross Street     LAT       LON
-## 1:              34.0591 -118.2542
-## 2:              33.9792 -118.2871
-## 3:              34.0311 -118.3335
-## 4:              34.2011 -118.5426
-## 5:              34.0958 -118.2787
-## 6:              34.2755 -118.4092</code></pre>
-</div>
-<div id="top-5-crime-types" class="section level2">
-<h2>Top 5 Crime Types</h2>
-<p>#For the period of 2010-19 (pre-pandemic) and the period of
-2020-present (during the pandemic)</p>
-<pre class="r"><code>CrimeType &lt;-
-  crime201019 %&gt;%
-  count(`Crm Cd Desc`)
 
-CrimeType %&gt;%
-  arrange(desc(n)) %&gt;%
-  top_n(5) %&gt;%
-knitr::kable(caption = &quot;Prevalence of Different Types of Crimes in LA County 2010-2019&quot;)</code></pre>
-<table>
-<caption>Prevalence of Different Types of Crimes in LA County
-2010-2019</caption>
-<thead>
-<tr class="header">
-<th align="left">Crm Cd Desc</th>
-<th align="right">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">BATTERY - SIMPLE ASSAULT</td>
-<td align="right">190569</td>
-</tr>
-<tr class="even">
-<td align="left">BURGLARY FROM VEHICLE</td>
-<td align="right">162184</td>
-</tr>
-<tr class="odd">
-<td align="left">VEHICLE - STOLEN</td>
-<td align="right">159903</td>
-</tr>
-<tr class="even">
-<td align="left">THEFT PLAIN - PETTY ($950 &amp; UNDER)</td>
-<td align="right">149910</td>
-</tr>
-<tr class="odd">
-<td align="left">BURGLARY</td>
-<td align="right">147731</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>CrimeType &lt;-
-  crime202022 %&gt;%
-  count(`Crm Cd Desc`)
-
-CrimeType %&gt;%
-  arrange(desc(n)) %&gt;%
-  top_n(5) %&gt;%
-knitr::kable(decreasing = TRUE, caption = &quot;Prevalence of Different Types of Crimes in LA County 2020-Present&quot;)</code></pre>
-<table>
-<caption>Prevalence of Different Types of Crimes in LA County
-2020-Present</caption>
-<thead>
-<tr class="header">
-<th align="left">Crm Cd Desc</th>
-<th align="right">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">VEHICLE - STOLEN</td>
-<td align="right">63711</td>
-</tr>
-<tr class="even">
-<td align="left">BATTERY - SIMPLE ASSAULT</td>
-<td align="right">46445</td>
-</tr>
-<tr class="odd">
-<td align="left">BURGLARY FROM VEHICLE</td>
-<td align="right">36911</td>
-</tr>
-<tr class="even">
-<td align="left">VANDALISM - FELONY ($400 &amp; OVER, ALL CHURCH
-VANDALISMS)</td>
-<td align="right">36870</td>
-</tr>
-<tr class="odd">
-<td align="left">BURGLARY</td>
-<td align="right">35539</td>
-</tr>
-</tbody>
-</table>
 </div>
 
 <p>Copyright &copy; 2022, Kaila An.</p>

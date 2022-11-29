@@ -1,13 +1,15 @@
 ---
 title: "Comparing the Changing Prevalence of Different Types of Crimes in LA County Before and During the COVID-19 Pandemic"
 author: "Kaila An"
+date: 11/27/2022
 output: 
     html_document:
         toc: TRUE
         toc_float: TRUE
 ---
 
-This is my PM566 Final Project website.
+**Download the whole HTML report:**
+**HTML REPORT** [**click here**]()
 
 <br>
 
@@ -32,8 +34,6 @@ opts_chunk$set(
   out.width = "700px")
 ```
 
-## Download the whole HTML report: 
-**HTML REPORT** [**click here**]()
 
 ## Description
 
@@ -41,9 +41,7 @@ The COVID-19 pandemic had changed the world as we knew it like no other occurren
 
 How has the prevalence of certain types of crimes in Los Angeles changed since the start of the COVID-19 pandemic?
 
-## Reading in and Checking the Data
 
-```{r}
 # Read in the data
 crime201019 <- data.table::fread("crimedata_2010to2019.csv")
 crime202022 <- data.table::fread("crimedata_2020topresent.csv")
@@ -51,46 +49,24 @@ crime202022 <- data.table::fread("crimedata_2020topresent.csv")
 
 #Checking the Data
 
-```{r}
-str(crime202022)
-str(crime201019)
 
-dim(crime201019)
-dim(crime202022)
-
-head(crime201019)
-head(crime202022)
-
-tail(crime201019)
-tail(crime202022)
-```
 
 ## Top 5 Crime Types
 #For the period of 2010-19 (pre-pandemic) and the period of 2020-present (during the pandemic)
 
-```{r}
-CrimeType <-
-  crime201019 %>%
-  count(`Crm Cd Desc`)
-
-CrimeType %>%
-  arrange(desc(n)) %>%
-  top_n(5) %>%
-knitr::kable(caption = "Prevalence of Different Types of Crimes in LA County 2010-2019")
-```
-
-```{r}
-CrimeType <-
-  crime202022 %>%
-  count(`Crm Cd Desc`)
-
-CrimeType %>%
-  arrange(desc(n)) %>%
-  top_n(5) %>%
-knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crimes in LA County 2020-Present")
-```
 
 
+
+
+
+
+
+
+
+
+<br>
+
+### Premise vs. Crime
 
 
 
