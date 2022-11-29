@@ -80,6 +80,7 @@ tail(crime201019)
 tail(crime202022)
 ```
 
+
 ```{r, echo=FALSE}
 sort(table(crime201019$`AREA NAME`))
 ```
@@ -118,6 +119,7 @@ knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crim
 <br>
 
 ### Top 5 Crimes vs. Regions
+
 
 <br>
 

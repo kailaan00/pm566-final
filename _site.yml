@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "PM 566 Final Project"
   left:
-    - text: "Home - Final Project"
+    - text: "Home"
       href: index.html
   right:
     - icon: fa-github fa-lg
@@ -12,7 +12,7 @@ navbar:
       href: https://uscbiostats.github.io/PM566/
 output:
   html_document:
-    theme: cosmo
+    theme: yeti
     include:
       after_body: footer.html
       css: styles.css
