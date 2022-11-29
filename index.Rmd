@@ -112,30 +112,26 @@ CrimeType %>%
 knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crimes in LA County 2020-Present")
 ```
 
-
 <br>
 
 ## Data Visualization
 
 <br>
 
-### 
-
-```{r}
+```{r, echo=FALSE, include=FALSE}
 library(stringr)
 crime$year <- str_extract(crime$`DATE OCC` , "[0-9]{4}") %>%
   as.numeric()
 ```
 
-```{r}
+```{r, echo=FALSE}
 p <- ggplot(crime , aes(y = year, x = ..count.., fill = as.factor(year))) + geom_bar() + guides(fill=guide_legend(title = "Year")) + ggtitle("Crime Occurrences by Year")
 ggplotly(p)
 ```
 
-
 <br>
 
-```{r}
+```{r, echo=FALSE}
 p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
@@ -143,7 +139,9 @@ ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xinterce
 ggplotly(p)
 ```
 
-```{r}
+<br>
+
+```{r, echo=FALSE}
 p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
@@ -151,7 +149,9 @@ ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xinterce
 ggplotly(p)
 ```
 
-```{r}
+<br>
+
+```{r,  echo=FALSE}
 p <- crime %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
 "THEFT PLAIN - PETTY ($950 & UNDER)" , "BURGLARY")) %>%
   group_by(`AREA NAME`, `Crm Cd Desc`) %>%
@@ -161,22 +161,6 @@ ggplotly(p , width = 1000 , height = 1500)
 ```
 
 
-
-Showcasing plots {.tabset}
-
-### Tab 1
-
-```{r echo=FALSE}
-```
-
-### Tab 2
-
-```{r echo=FALSE}
-```
-
-## {-}
-
-<br>
 
 
 
