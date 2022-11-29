@@ -41,32 +41,142 @@ The COVID-19 pandemic had changed the world as we knew it like no other occurren
 
 How has the prevalence of certain types of crimes in Los Angeles changed since the start of the COVID-19 pandemic?
 
+This final project for PM 566 will examine how the prevalence of certain crimes have changed in LA county as a result of the pandemic and will do so through designing a number of interactive figures that will make it easier to visualize crime instances and characteristics of certain crimes that have taken place.  It will also make it possible to detect and analyze certain patterns and contingencies that may be apparent.
 
+<br>
+
+## Methods
+
+In order to answer the question and design the necessary data visualizations, the necessary data is to be obtained from the Los Angeles City Data website.  I used two data sets from the website, which can be found here:
+
+**Crime Data from 2010-2019:** https://data.lacity.org/Public-Safety/Crime-Data-from-2010-to-2019/63jg-8b9z
+
+**Crime Data from 2020-Present:**
+https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8
+
+The datasets are extremely large with over a million entries and 28 variables.  We will be looking most closely at the variable, 'Crm Cd Desc', or Crime Code Description.  This will tell us the names of the different crime types committed.
+
+<br>
+
+```{r, echo=FALSE, include=FALSE}
 # Read in the data
 crime201019 <- data.table::fread("crimedata_2010to2019.csv")
 crime202022 <- data.table::fread("crimedata_2020topresent.csv")
+crime <- rbind(crime201019, crime202022)
 ```
 
-#Checking the Data
 
+```{r, echo=FALSE, include=FALSE}
+# Check the data
+str(crime202022)
+str(crime201019)
+
+dim(crime201019)
+dim(crime202022)
+
+head(crime201019)
+head(crime202022)
+
+tail(crime201019)
+tail(crime202022)
+```
+
+
+```{r, echo=FALSE}
+sort(table(crime201019$`AREA NAME`))
+```
 
 
 ## Top 5 Crime Types
-#For the period of 2010-19 (pre-pandemic) and the period of 2020-present (during the pandemic)
+For the period of 2010-19 (pre-pandemic) and the period of 2020-present (during the pandemic)
 
+```{r, echo=FALSE}
+CrimeType <-
+  crime201019 %>%
+  count(`Crm Cd Desc`)
 
+CrimeType %>%
+  arrange(desc(n)) %>%
+  top_n(5) %>%
+knitr::kable(caption = "Prevalence of Different Types of Crimes in LA County 2010-2019")
+```
 
+```{r, echo=FALSE}
+CrimeType <-
+  crime202022 %>%
+  count(`Crm Cd Desc`)
 
-
-
-
-
-
+CrimeType %>%
+  arrange(desc(n)) %>%
+  top_n(5) %>%
+knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crimes in LA County 2020-Present")
+```
 
 
 <br>
 
-### Premise vs. Crime
+## Data Visualization
+
+<br>
+
+### 
+
+```{r}
+library(stringr)
+crime$year <- str_extract(crime$`DATE OCC` , "[0-9]{4}") %>%
+  as.numeric()
+```
+
+```{r}
+p <- ggplot(crime , aes(y = year, x = ..count.., fill = as.factor(year))) + geom_bar() + guides(fill=guide_legend(title = "Year")) + ggtitle("Crime Occurrences by Year")
+ggplotly(p)
+```
+
+
+<br>
+
+```{r}
+p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)") %>%
+  group_by(year) %>%
+  summarise(n = n()) %>%
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Vandalism Before and After COVID-19") + scale_x_continuous(breaks = seq(2010, 2022, 1))
+ggplotly(p)
+```
+
+```{r}
+p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
+  group_by(year) %>%
+  summarise(n = n()) %>%
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Stolen Vehicles Before and After the COVID-19 Pandemic") + scale_x_continuous(breaks = seq(2010, 2022, 1))
+ggplotly(p)
+```
+
+```{r}
+p <- crime %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
+"THEFT PLAIN - PETTY ($950 & UNDER)" , "BURGLARY")) %>%
+  group_by(`AREA NAME`, `Crm Cd Desc`) %>%
+  summarise(n = n()) %>%
+ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + ggtitle("Occurrences of the Top 5 Crimes by Area") + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
+ggplotly(p)
+```
+
+
+
+Showcasing plots {.tabset}
+
+### Tab 1
+
+```{r echo=FALSE}
+```
+
+### Tab 2
+
+```{r echo=FALSE}
+```
+
+## {-}
+
+<br>
 
 
 
