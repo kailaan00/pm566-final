@@ -157,7 +157,7 @@ p <- crime %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLAR
   group_by(`AREA NAME`, `Crm Cd Desc`) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + ggtitle("Occurrences of the Top 5 Crimes by Area") + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
-ggplotly(p)
+ggplotly(p , width = 1000 , height = 1500)
 ```
 
 
