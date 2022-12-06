@@ -133,6 +133,9 @@ ggplotly(p)
 
 The following figure shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.
 
+
+### **Top 5 Crimes by Area** {.tabset}
+
 #### 2010-19
 
 ```{r echo=FALSE}
