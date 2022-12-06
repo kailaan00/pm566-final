@@ -1,0 +1,160 @@
+---
+title: "Change in Types of Crime Before and During the COVID-19 Pandemic"
+author: "Kaila An"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document: default
+  html_document: FALSE
+---
+
+
+
+```{r setup, message=FALSE, echo=FALSE, warning=FALSE}
+library(data.table)
+library(tidyverse)
+library(dplyr)
+library(plotly)
+library(DT)
+library(knitr)
+
+# Initialize code chunk options
+opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  eval=TRUE,
+  echo = TRUE,
+  cache = FALSE,
+  fig.width = 7, 
+  fig.align = 'center',
+  fig.asp = 0.618,
+  out.width = "700px")
+```
+
+## Introduction
+
+The COVID-19 pandemic had changed the world as we knew it like no other occurrence before. It changed people’s lifestyles, their habits, and overall created a “new normal”. People’s mindsets and priorities have changed so drastically, that it would be interesting to note whether or not it brought a change to criminal behavior and activity. Ever since the true start of the pandemic in early 2020, we have seen high rates of crime, like the widespread looting, racial hate crimes, and much more. For this project, I chose to focus on Los Angeles City Data, specifically, ‘Crime Data in LA from 2020 to present’ and ‘Crime Data in LA from 2010 to 2019’. These particular data sets document incidents of crime, transcribed from crime reports. This data has been provided by the Los Angeles Police Department. Based on these data sets, the question I would like to address is:
+
+How has the prevalence of certain types of crimes in Los Angeles changed since the start of the COVID-19 pandemic?
+
+This final project for PM 566 will examine how the prevalence of certain crimes have changed in LA county as a result of the pandemic and will do so through designing a number of interactive figures that will make it easier to visualize crime instances and characteristics of certain crimes that have taken place. It will also make it possible to detect and analyze certain patterns and contingencies that may be apparent.
+
+
+## Methods
+
+```{r, echo=FALSE, include=FALSE}
+# Read in the data
+crime201019 <- data.table::fread("crimedata_2010to2019.csv")
+crime202022 <- data.table::fread("crimedata_2020topresent.csv")
+crime <- rbind(crime201019, crime202022)
+```
+
+
+```{r, echo=FALSE, include=FALSE}
+# Check the data
+str(crime202022)
+str(crime201019)
+
+dim(crime201019)
+dim(crime202022)
+
+head(crime201019)
+head(crime202022)
+
+tail(crime201019)
+tail(crime202022)
+```
+
+```{r, echo=FALSE}
+CrimeType <-
+  crime201019 %>%
+  count(`Crm Cd Desc`)
+
+CrimeType %>%
+  arrange(desc(n)) %>%
+  top_n(5) %>%
+knitr::kable(caption = "Prevalence of Different Types of Crimes in LA County 2010-2019")
+```
+
+```{r, echo=FALSE}
+CrimeType <-
+  crime202022 %>%
+  count(`Crm Cd Desc`)
+
+CrimeType %>%
+  arrange(desc(n)) %>%
+  top_n(5) %>%
+knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crimes in LA County 2020-Present")
+```
+
+
+## Results
+
+**Crime Occurrence by Year**
+
+This interactive bar chart shows the number of crimes (total) that took place yearly from 2010-2022.  We see that rates of crime have remained relatively similar, but there is a spike in crime between 2020 to 2021 (during the COVID-19 pandemic).  There seems to be significantly less crime in 2022.  This is not due to the fact that crime rates had decreased.  It is important to note that the year 2022 is not over yet.  It would be worthwhile to revisit this data set at the end of the year and run the same analysis, in order to see the ending total of crime occurrences for 2022.
+
+```{r, echo=FALSE, include=FALSE}
+library(stringr)
+crime$year <- str_extract(crime$`DATE OCC` , "[0-9]{4}") %>%
+  as.numeric()
+```
+
+```{r, echo=FALSE}
+p <- ggplot(crime , aes(y = year, x = ..count.., fill = as.factor(year))) + geom_bar() + guides(fill=guide_legend(title = "Year")) + ggtitle("Crime Occurrences by Year")
+ggplotly(p)
+```
+
+
+**Vandalism (Felony)**
+
+A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pandemic) was Vandalism.  This would be considered a felony for offenses that were $400 in damages and over and included all church vandalisms.  This is a scatterplot that represents occurrences of these sorts of vandalisms throughout the years.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any.  Vandalism occurrences were on the rise since the start of the pandemic and reached a high in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
+
+```{r, echo=FALSE}
+p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)") %>%
+  group_by(year) %>%
+  summarise(n = n()) %>%
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Vandalism Before and After COVID-19") + scale_x_continuous(breaks = seq(2010, 2022, 1))
+ggplotly(p)
+```
+
+**Stolen Vehicles**
+
+The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a scatterplot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
+
+```{r, echo=FALSE}
+p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
+  group_by(year) %>%
+  summarise(n = n()) %>%
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Stolen Vehicles Before and After the COVID-19 Pandemic") + scale_x_continuous(breaks = seq(2010, 2022, 1))
+ggplotly(p)
+```
+
+**Top 5 Crimes by Area** {.tabset}
+
+The following figure shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.
+
+#### 2010-19
+
+```{r echo=FALSE}
+p1_scatter <- crime201019 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
+"THEFT PLAIN - PETTY ($950 & UNDER)" , "BURGLARY")) %>%
+  group_by(`AREA NAME`, `Crm Cd Desc`) %>%
+  summarise(n = n()) %>%
+ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + ggtitle("Occurrences of the Top 5 Crimes by Area 2010-2019") + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
+ggplotly(p1_scatter , width = 1000 , height = 1500)
+```
+
+#### 2020-Present
+
+```{r echo=FALSE}
+p2_scatter <- crime202022 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
+"VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)" , "BURGLARY")) %>%
+  group_by(`AREA NAME`, `Crm Cd Desc`) %>%
+  summarise(n = n()) %>%
+ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + ggtitle("Occurrences of the Top 5 Crimes by Area 2020-Present") + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
+ggplotly(p2_scatter , width = 1000 , height = 1500)
+```
+
+### {-}
+
+## Conclusion and Summary

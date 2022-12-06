@@ -1,0 +1,226 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Change in Types of Crime Before and During the COVID-19 Pandemic},
+  pdfauthor={Kaila An},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Change in Types of Crime Before and During the COVID-19 Pandemic}
+\author{Kaila An}
+\date{2022-12-05}
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+The COVID-19 pandemic had changed the world as we knew it like no other
+occurrence before. It changed people's lifestyles, their habits, and
+overall created a ``new normal''. People's mindsets and priorities have
+changed so drastically, that it would be interesting to note whether or
+not it brought a change to criminal behavior and activity. Ever since
+the true start of the pandemic in early 2020, we have seen high rates of
+crime, like the widespread looting, racial hate crimes, and much more.
+For this project, I chose to focus on Los Angeles City Data,
+specifically, `Crime Data in LA from 2020 to present' and `Crime Data in
+LA from 2010 to 2019'. These particular data sets document incidents of
+crime, transcribed from crime reports. This data has been provided by
+the Los Angeles Police Department. Based on these data sets, the
+question I would like to address is:
+
+How has the prevalence of certain types of crimes in Los Angeles changed
+since the start of the COVID-19 pandemic?
+
+This final project for PM 566 will examine how the prevalence of certain
+crimes have changed in LA county as a result of the pandemic and will do
+so through designing a number of interactive figures that will make it
+easier to visualize crime instances and characteristics of certain
+crimes that have taken place. It will also make it possible to detect
+and analyze certain patterns and contingencies that may be apparent.
+
+\hypertarget{methods}{%
+\subsection{Methods}\label{methods}}
+
+\begin{longtable}[]{@{}lr@{}}
+\caption{Prevalence of Different Types of Crimes in LA County
+2010-2019}\tabularnewline
+\toprule()
+Crm Cd Desc & n \\
+\midrule()
+\endfirsthead
+\toprule()
+Crm Cd Desc & n \\
+\midrule()
+\endhead
+BATTERY - SIMPLE ASSAULT & 190569 \\
+BURGLARY FROM VEHICLE & 162184 \\
+VEHICLE - STOLEN & 159903 \\
+THEFT PLAIN - PETTY (\$950 \& UNDER) & 149910 \\
+BURGLARY & 147731 \\
+\bottomrule()
+\end{longtable}
+
+\begin{longtable}[]{@{}lr@{}}
+\caption{Prevalence of Different Types of Crimes in LA County
+2020-Present}\tabularnewline
+\toprule()
+Crm Cd Desc & n \\
+\midrule()
+\endfirsthead
+\toprule()
+Crm Cd Desc & n \\
+\midrule()
+\endhead
+VEHICLE - STOLEN & 63711 \\
+BATTERY - SIMPLE ASSAULT & 46445 \\
+BURGLARY FROM VEHICLE & 36911 \\
+VANDALISM - FELONY (\$400 \& OVER, ALL CHURCH VANDALISMS) & 36870 \\
+BURGLARY & 35539 \\
+\bottomrule()
+\end{longtable}
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+\textbf{Crime Occurrence by Year}
+
+This interactive bar chart shows the number of crimes (total) that took
+place yearly from 2010-2022. We see that rates of crime have remained
+relatively similar, but there is a spike in crime between 2020 to 2021
+(during the COVID-19 pandemic). There seems to be significantly less
+crime in 2022. This is not due to the fact that crime rates had
+decreased. It is important to note that the year 2022 is not over yet.
+It would be worthwhile to revisit this data set at the end of the year
+and run the same analysis, in order to see the ending total of crime
+occurrences for 2022.
+
+\begin{center}\includegraphics[width=700px]{report_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+\textbf{Vandalism (Felony)}
+
+A new crime type that arose in the Top 5 of 2020-2022 (during the
+COVID-19 pandemic) was Vandalism. This would be considered a felony for
+offenses that were \$400 in damages and over and included all church
+vandalisms. This is a scatterplot that represents occurrences of these
+sorts of vandalisms throughout the years. There is a red line to
+indicate the start of the COVID-19 pandemic, to make it easier to see
+where a difference lies, if any. Vandalism occurrences were on the rise
+since the start of the pandemic and reached a high in 2021. The sudden
+drop in 2022 can also be attributed to the fact that the year 2022 is
+not over yet.
+
+\begin{center}\includegraphics[width=700px]{report_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+\textbf{Stolen Vehicles}
+
+The \#1 most common crime after the start of the COVID-19 pandemic was
+stolen vehicles. This is a scatterplot that represents occurrences of
+these sorts of vehicle theft throughout the years 2010-2022. There is a
+red line to indicate the start of the COVID-19 pandemic, to make it
+easier to see where a difference lies, if any. We see that vehicle theft
+was experiencing a steep upwards trend since 2019 and reached an
+all-time high in 2021. It seems as though many crime types experienced
+all-time highs in 2021. The sudden drop in 2022 can also be attributed
+to the fact that the year 2022 is not over yet.
+
+\begin{center}\includegraphics[width=700px]{report_files/figure-latex/unnamed-chunk-8-1} \end{center}
+
+\textbf{Top 5 Crimes by Area} \{.tabset\}
+
+The following figure shows the differing numbers of occurrence of the
+top 5 crimes for each area of LA county. There are two tabs that
+represent the top 5 crimes for the areas for 2010-2019 and the same for
+2020-present. Through this figure, we can see how certain types of
+crimes may be more prevalent in certain areas than others and if there
+were overall more or less crime occurrences in different areas of LA
+county. One can also navigate whether or not trends of crime
+significantly changed in these specific areas following the start of the
+COVID-19 pandemic.
+
+\hypertarget{section}{%
+\paragraph{2010-19}\label{section}}
+
+\begin{center}\includegraphics[width=700px]{report_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+\hypertarget{present}{%
+\paragraph{2020-Present}\label{present}}
+
+\begin{center}\includegraphics[width=700px]{report_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+\hypertarget{section-1}{%
+\subsubsection*{}\label{section-1}}
+\addcontentsline{toc}{subsubsection}{}
+
+\hypertarget{conclusion-and-summary}{%
+\subsection{Conclusion and Summary}\label{conclusion-and-summary}}
+
+\end{document}
