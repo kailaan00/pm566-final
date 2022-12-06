@@ -114,7 +114,7 @@ p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHU
   group_by(year) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Vandalism Before and After COVID-19") + scale_x_continuous(breaks = seq(2010, 2022, 1))
-ggplotly(p)
+ggplotly(p, width = 800 , height = 500)
 ```
 
 **Stolen Vehicles**
@@ -126,7 +126,7 @@ p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Stolen Vehicles Before and After the COVID-19 Pandemic") + scale_x_continuous(breaks = seq(2010, 2022, 1))
-ggplotly(p, width = 900 , height = 500)
+ggplotly(p, width = 800 , height = 500)
 ```
 
 **Top 5 Crimes by Area** {.tabset}
@@ -134,9 +134,7 @@ ggplotly(p, width = 900 , height = 500)
 The following figure shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.
 
 
-### **Top 5 Crimes by Area** {.tabset}
-
-#### 2010-19
+### **Top 5 Crimes by Area **2010-19
 
 ```{r echo=FALSE}
 p1_scatter <- crime201019 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
@@ -147,7 +145,7 @@ ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + gg
 ggplotly(p1_scatter , width = 1000 , height = 1300)
 ```
 
-#### 2020-Present
+### **Top 5 Crimes by Area 2020-Present**
 
 ```{r echo=FALSE}
 p2_scatter <- crime202022 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
@@ -157,7 +155,5 @@ p2_scatter <- crime202022 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSA
 ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + ggtitle("Occurrences of the Top 5 Crimes by Area 2020-Present") + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
 ggplotly(p2_scatter , width = 1000 , height = 1300)
 ```
-
-### {-}
 
 ## Conclusion and Summary
