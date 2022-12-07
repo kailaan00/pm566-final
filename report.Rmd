@@ -141,8 +141,8 @@ ggplotly(p)
 p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
-ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + scale_x_continuous(breaks = seq(2010, 2022, 1)) + labs(y = "# of Vandalism Occurrences" , x = "Year")
-ggplotly(p, width = 500 , height = 200)
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + scale_x_continuous(breaks = seq(2010, 2022, 1)) + labs(y = "# of Vandalism" , x = "Year")
+ggplotly(p, width = 500 , height = 300)
 ```
 
 **Stolen Vehicles**
@@ -154,8 +154,8 @@ ggplotly(p, width = 500 , height = 200)
 p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
-ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + scale_x_continuous(breaks = seq(2010, 2022, 1)) + labs(y = "# of Stolen Vehicle Occurrences" , x = "Year")
-ggplotly(p, width = 500 , height = 200)
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + scale_x_continuous(breaks = seq(2010, 2022, 1)) + labs(y = "# of Stolen Vehicle" , x = "Year")
+ggplotly(p, width = 500 , height = 300)
 ```
 
 **Top 5 Crimes by Area**
