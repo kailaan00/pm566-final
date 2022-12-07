@@ -14,6 +14,7 @@ library(dplyr)
 library(plotly)
 library(DT)
 library(knitr)
+library(stringr)
 
 # Initialize code chunk options
 opts_chunk$set(
