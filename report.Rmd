@@ -92,7 +92,7 @@ tail(crime202022)
 ## Results
 
 **Tables** 
-These tables highlight the top 5 crimes for the two different datasets: pre-COVID-19 (2010-2019) and post-COVID-19 (2020-present).  It is important to note that the numbers for table #2 are significantly smaller than that of table #1.  This is due to the fact that table #1 deals with 10 years of crime data and incidences while table #2 only has over 2 years of data to refer to.
+These tables highlight the top 5 crimes for the two different datasets: pre-COVID-19 (2010-2019) and post-COVID-19 (2020-present).  It is important to note that the numbers for table #2 are significantly smaller than that of table #1.  This is due to the fact that table #1 deals with 10 years of crime data and incidences while table #2 only has over 2 years of data to refer to
 
 ```{r, echo=FALSE}
 CrimeType <-
@@ -170,7 +170,7 @@ p1_scatter <- crime201019 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSA
   group_by(`AREA NAME`, `Crm Cd Desc`) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
-ggplotly(p1_scatter , width = 800 , height = 1000)
+ggplotly(p1_scatter , width = 800 , height = 800)
 ```
 
 **Figure 5. Top 5 Crimes by Area 2020-Present**
@@ -181,7 +181,7 @@ p2_scatter <- crime202022 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSA
   group_by(`AREA NAME`, `Crm Cd Desc`) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
-ggplotly(p2_scatter , width = 800 , height = 1000)
+ggplotly(p2_scatter , width = 800 , height = 800)
 ```
 
 ## Conclusion and Summary
