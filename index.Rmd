@@ -12,7 +12,7 @@ output:
 ---
 
 **Download the whole PDF report:**
-[**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/565fc3d20cea4f57a7aa315018b51956eb3dd87b/report.pdf) 
+[**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/33d85c41161bf45412b060a2f27d4e02c8813af3/report.pdf) 
 
 <br>
 
