@@ -139,7 +139,7 @@ p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHU
   group_by(year) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + scale_x_continuous(breaks = seq(2010, 2022, 1))
-ggplotly(p, width = 500 , height = 300)
+ggplotly(p, width = 500 , height = 200)
 ```
 
 **Stolen Vehicles**
@@ -152,7 +152,7 @@ p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + scale_x_continuous(breaks = seq(2010, 2022, 1))
-ggplotly(p, width = 500 , height = 300)
+ggplotly(p, width = 500 , height = 200)
 ```
 
 **Top 5 Crimes by Area**

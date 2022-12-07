@@ -11,8 +11,8 @@ output:
     toc_float: yes
 ---
 
-**Download the whole HTML report:**
-**HTML REPORT** [**click here**]()
+**Download the whole PDF report:**
+**PDF REPORT** [**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/565fc3d20cea4f57a7aa315018b51956eb3dd87b/report.pdf) 
 
 <br>
 
