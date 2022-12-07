@@ -170,7 +170,7 @@ p1_scatter <- crime201019 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSA
   group_by(`AREA NAME`, `Crm Cd Desc`) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
-ggplotly(p1_scatter , width = 800 , height = 800)
+ggplotly(p1_scatter , width = 500 , height = 700)
 ```
 
 **Figure 5. Top 5 Crimes by Area 2020-Present**
@@ -181,7 +181,7 @@ p2_scatter <- crime202022 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSA
   group_by(`AREA NAME`, `Crm Cd Desc`) %>%
   summarise(n = n()) %>%
 ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + facet_wrap(~`AREA NAME` , ncol = 3) + theme(axis.text.x = element_blank()) + labs(col = "Crime Type")
-ggplotly(p2_scatter , width = 800 , height = 800)
+ggplotly(p2_scatter , width = 500 , height = 700)
 ```
 
 ## Conclusion and Summary
