@@ -30,11 +30,13 @@ opts_chunk$set(
 
 ## Introduction
 
-  The COVID-19 pandemic had changed the world as we knew it like no other occurrence before. It changed people’s lifestyles, their habits, and overall created a “new normal”. People’s mindsets and priorities have changed so drastically, that it would be interesting to note whether or not it brought a change to criminal behavior and activity. Ever since the true start of the pandemic in early 2020, we have seen high rates of crime, like the widespread looting, racial hate crimes, and much more. For this project, I chose to focus on Los Angeles City Data, specifically, ‘Crime Data in LA from 2020 to present’ and ‘Crime Data in LA from 2010 to 2019’. These particular data sets document incidents of crime, transcribed from crime reports. This data has been provided by the Los Angeles Police Department. Based on these data sets, the question I would like to address is:
+  The COVID-19 pandemic had changed the world as we knew it like no other occurrence before. It changed people’s lifestyles, their habits, and overall created a “new normal”. People’s mindsets and priorities have changed so drastically, that it would be interesting to note whether or not it brought a change to criminal behavior and activity. Ever since the start of the pandemic in early 2020, we have seen high rates of crime, like the widespread looting, racial hate crimes, and much more. For this project, I chose to focus on Los Angeles City Data, specifically, ‘Crime Data in LA from 2020 to present’ and ‘Crime Data in LA from 2010 to 2019’. These particular data sets document incidents of crime, transcribed from crime reports. This data has been provided by the Los Angeles Police Department. Based on these data sets, the question I would like to address is:
 
 How has the prevalence of certain types of crimes in Los Angeles changed since the start of the COVID-19 pandemic?
 
-  This final project for PM 566 will examine how the prevalence of certain crimes have changed in LA county as a result of the pandemic and will do so through designing a number of interactive figures that will make it easier to visualize crime instances and characteristics of certain crimes that have taken place. It will also make it possible to detect and analyze certain patterns and contingencies that may be apparent.
+  This final report will examine how the prevalence of certain crimes have changed in LA county as a result of the pandemic and will do so through designing a number of interactive figures that will make it easier to visualize crime instances and characteristics of certain crimes that have taken place. It will also make it possible to detect and analyze certain patterns and contingencies that may be apparent.
+  
+  Through this report, if we are able to identify certain types of crimes and deduce why they may occur and how new behaviors arising from the start of the pandemic may have contributed to them, it may be possible to assert preventative measures in order to reduce these prevalent crime types.  
 
 
 ## Methods
@@ -89,7 +91,8 @@ tail(crime202022)
 
 ## Results
 
-**Tables** These tables highlight the top 5 crimes for the two different datasets: pre-COVID-19 (2010-2019) and post-COVID-19 (2020-present).  It is important to note that the numbers for table #2 are significantly smaller than that of table #1.  This is due to the fact that table #1 deals with 10 years of crime data and incidences while table #2 only has over 2 years of data to refer to.
+**Tables** 
+These tables highlight the top 5 crimes for the two different datasets: pre-COVID-19 (2010-2019) and post-COVID-19 (2020-present).  It is important to note that the numbers for table #2 are significantly smaller than that of table #1.  This is due to the fact that table #1 deals with 10 years of crime data and incidences while table #2 only has over 2 years of data to refer to.
 
 ```{r, echo=FALSE}
 CrimeType <-
@@ -115,7 +118,7 @@ knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crim
 
 **Figure 1. Crime Occurrence by Year**
 
-  This interactive bar chart shows the number of crimes (total) that took place yearly from 2010-2022.  We see that rates of crime have remained relatively similar, but there is a spike in crime between 2020 to 2021 (during the COVID-19 pandemic).  There seems to be significantly less crime in 2022.  This is not due to the fact that crime rates had decreased.  It is important to note that the year 2022 is not over yet.  It would be worthwhile to revisit this data set at the end of the year and run the same analysis, in order to see the ending total of crime occurrences for 2022.
+  This interactive bar chart shows the number of crimes (total) that took place yearly from 2010-2022.  We see that rates of crime have remained relatively similar, but there is a spike in crime between 2020 to 2021 (during the COVID-19 pandemic).  There seems to be significantly less crime in 2022.  This is not due to the fact that crime rates had decreased.  It is important to note that the year 2022 is not over yet.  It would be worthwhile to revisit this data set at the end of the year and run the same analysis, in order to see the ending total of crime occurrences for 2022.  Overall, we do not see an all-time high in crime through any of the COVID-19 years, meaning that the pandemic did not bring upon higher rates of crime, in general, which is a positive thing to note.  This means that the most change must have occurred due to other specific characteristics, for which we will examine further in the following figures.
 
 ```{r, echo=FALSE, include=FALSE}
 library(stringr)
@@ -131,7 +134,7 @@ ggplotly(p)
 
 **Vandalism (Felony)**
 
-  A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pandemic) was Vandalism.  This would be considered a felony for offenses that were $400 in damages and over and included all church vandalisms.  This is a scatterplot that represents occurrences of these sorts of vandalisms throughout the years.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any.  Vandalism occurrences were on the rise since the start of the pandemic and reached a high in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
+  A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pandemic) was Vandalism.  This would be considered a felony for offenses that were $400 in damages and over and included all church vandalisms.  This is a scatterplot that represents occurrences of these sorts of vandalisms throughout the years.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any.  Vandalism occurrences were on the rise since the start of the pandemic and reached a high in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.  It's important to note that these Vandalisms could've been attributed to the looting and property damage that was occurring at the time of certain activist movements, such as Black Lives Matter.  The pandemic brought upon many social justice issues, and a lot of people turned to crime as a way to express their anger and to push for their cause.
 
 **Figure 2. Occurrences of Vandalism Before and After COVID-19**
 ```{r, echo=FALSE}
@@ -144,7 +147,7 @@ ggplotly(p, width = 500 , height = 200)
 
 **Stolen Vehicles**
 
-  The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a scatterplot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
+  The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a scatterplot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.  Vehicle Theft rising to be the #1 most common crime throughout the pandemic can be attributed to several reasons.  For one, a lot of "hacks" have been circulating on social media regarding how to break into certain models of cars with USB cables.  Also, the pandemic resulted in a lot of layoffs, due to lack of business and owners being unable to pay their employees.  This would often result in businesses shutting down.  In addition, the "work from home" culture brought upon less of a need for certain roles, which led to employees being terminated.  This would result in financial burden, which may have driven those desperate enough to steal vehicles.  
 
 **Figure 3. Occurrences of Stolen Vehicles Before and After COVID-19**
 ```{r, echo=FALSE}
@@ -157,7 +160,7 @@ ggplotly(p, width = 500 , height = 200)
 
 **Top 5 Crimes by Area**
 
-  The following figures shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.
+  The following figures shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.  Through these figures, it would be interesting to note how top 5 crimes may have changed before and after the start of the pandemic per region.  One could also deduce whether certain crimes remain high in specific areas, compared to others,  and why this may be.  For example, the regions 'Wilshire' and 'West LA' experience significantly less crime overall than that of 'Central', 'North Hollywood', or 'Hollywood'.  On top of that, the top crime for each of these areas vary greatly.  
 
 **Figure 4. Top 5 Crimes by Area (2010-19)**
 
