@@ -12,7 +12,7 @@ output:
 ---
 
 **Download the whole PDF report:**
-**PDF REPORT** [**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/565fc3d20cea4f57a7aa315018b51956eb3dd87b/report.pdf) 
+[**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/565fc3d20cea4f57a7aa315018b51956eb3dd87b/report.pdf) 
 
 <br>
 
@@ -127,7 +127,7 @@ crime$year <- str_extract(crime$`DATE OCC` , "[0-9]{4}") %>%
 ```
 
 ```{r, echo=FALSE}
-p <- ggplot(crime , aes(y = year, x = ..count.., fill = as.factor(year))) + geom_bar() + guides(fill=guide_legend(title = "Year")) + ggtitle("Crime Occurrences by Year")
+p <- ggplot(crime , aes(y = year, x = ..count.., fill = as.factor(year))) + geom_bar() + guides(fill=guide_legend(title = "Year")) + ggtitle("Crime Occurrences by Year") + labs(y = "Year" , x = "# of Occurrence of Crime")
 ggplotly(p)
 ```
 
@@ -141,7 +141,7 @@ A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pande
 p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
-ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Vandalism Before and After COVID-19") + scale_x_continuous(breaks = seq(2010, 2022, 1))
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Vandalism Before and After COVID-19") + scale_x_continuous(breaks = seq(2010, 2022, 1)) + labs(y = "# of Vandalism Occurrences" , x = "Year")
 ggplotly(p)
 ```
 
@@ -155,7 +155,7 @@ The #1 most common crime after the start of the COVID-19 pandemic was stolen veh
 p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
   group_by(year) %>%
   summarise(n = n()) %>%
-ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Stolen Vehicles Before and After the COVID-19 Pandemic") + scale_x_continuous(breaks = seq(2010, 2022, 1))
+ggplot(aes(x = year , y = n)) + geom_point() + geom_line() + geom_vline(xintercept = 2020 , color = "red") + ggtitle("Occurrences of Stolen Vehicles Before and After the COVID-19 Pandemic") + scale_x_continuous(breaks = seq(2010, 2022, 1)) + labs(y = "# of Stolen Vehicle Occurrences" , x = "Year")
 ggplotly(p)
 ```
 
