@@ -7,8 +7,6 @@ output:
   html_document: FALSE
 ---
 
-
-
 ```{r setup, message=FALSE, echo=FALSE, warning=FALSE}
 library(data.table)
 library(tidyverse)
@@ -41,6 +39,29 @@ This final project for PM 566 will examine how the prevalence of certain crimes 
 
 ## Methods
 
+**How to download data:**
+I obtained the data from the Los Angeles City Data website.  The datasets were fairly large, and so one would need to download them on their own in order to view and manipulate the files.  Below, are steps to downloading the datasets and reading them into R:
+
+1.	Go to the following links and click ‘export’ and then ‘csv’ in order to download the datasets as CSV files directly onto your computer:
+<https://data.lacity.org/Public-Safety/Crime-Data-from-2010-to-2019/63jg-8b9z>
+<https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8>
+2.	Rename the datasets to: “crimedata_2020topresent.csv” and 
+“crimedata_2010to2019.csv”
+3.	Then, you can read in the data using the codes a few lines below with the data.table::fread function.
+
+**Data cleaning and wrangling:**
+The datasets are extremely large with over a million entries each and 28 variables.  Therefore, I decided to focus on a few in particular when conducting analyses and creating figures.  I focused heavily on 'Crime Code Description', 'Date of Occurrence', and 'Region/Area'.  I delved deeper into these variables and looked into the different categories within them in order to determine changes in prevalence in crime before and after the start of COVID-19.
+
+
+
+
+**Tools used for data exploration:**
+I utilized packages data.table, tidyverse, dplyr, plotly, DT, stringr, and knitr, in analyzing the data and creating corresponding tables and figures.  
+
+
+
+
+
 ```{r, echo=FALSE, include=FALSE}
 # Read in the data
 crime201019 <- data.table::fread("crimedata_2010to2019.csv")
@@ -64,6 +85,11 @@ tail(crime201019)
 tail(crime202022)
 ```
 
+
+## Results
+
+**Tables**
+
 ```{r, echo=FALSE}
 CrimeType <-
   crime201019 %>%
@@ -85,9 +111,6 @@ CrimeType %>%
   top_n(5) %>%
 knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crimes in LA County 2020-Present")
 ```
-
-
-## Results
 
 **Figure 1. Crime Occurrence by Year**
 
@@ -123,7 +146,7 @@ ggplotly(p, width = 500 , height = 300)
 
 The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a scatterplot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
 
-**Figure 2. Occurrences of Stolen Vehicles Before and After COVID-19**
+**Figure 3. Occurrences of Stolen Vehicles Before and After COVID-19**
 ```{r, echo=FALSE}
 p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
   group_by(year) %>%
@@ -137,7 +160,7 @@ ggplotly(p, width = 500 , height = 300)
 The following figures shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.
 
 
-**Figure 3. Top 5 Crimes by Area (2010-19)**
+**Figure 4. Top 5 Crimes by Area (2010-19)**
 
 ```{r echo=FALSE}
 p1_scatter <- crime201019 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
@@ -148,7 +171,7 @@ ggplot(aes(x = `Crm Cd Desc` , y = n , col = `Crm Cd Desc`)) + geom_point() + fa
 ggplotly(p1_scatter , width = 1000 , height = 1200)
 ```
 
-**Figure 4. Top 5 Crimes by Area 2020-Present**
+**Figure 5. Top 5 Crimes by Area 2020-Present**
 
 ```{r echo=FALSE}
 p2_scatter <- crime202022 %>% filter(`Crm Cd Desc` %in% c("BATTERY - SIMPLE ASSAULT" , "BURGLARY FROM VEHICLE" , "VEHICLE - STOLEN" , 
