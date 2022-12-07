@@ -30,36 +30,37 @@ opts_chunk$set(
 
 ## Introduction
 
-The COVID-19 pandemic had changed the world as we knew it like no other occurrence before. It changed people’s lifestyles, their habits, and overall created a “new normal”. People’s mindsets and priorities have changed so drastically, that it would be interesting to note whether or not it brought a change to criminal behavior and activity. Ever since the true start of the pandemic in early 2020, we have seen high rates of crime, like the widespread looting, racial hate crimes, and much more. For this project, I chose to focus on Los Angeles City Data, specifically, ‘Crime Data in LA from 2020 to present’ and ‘Crime Data in LA from 2010 to 2019’. These particular data sets document incidents of crime, transcribed from crime reports. This data has been provided by the Los Angeles Police Department. Based on these data sets, the question I would like to address is:
+  The COVID-19 pandemic had changed the world as we knew it like no other occurrence before. It changed people’s lifestyles, their habits, and overall created a “new normal”. People’s mindsets and priorities have changed so drastically, that it would be interesting to note whether or not it brought a change to criminal behavior and activity. Ever since the true start of the pandemic in early 2020, we have seen high rates of crime, like the widespread looting, racial hate crimes, and much more. For this project, I chose to focus on Los Angeles City Data, specifically, ‘Crime Data in LA from 2020 to present’ and ‘Crime Data in LA from 2010 to 2019’. These particular data sets document incidents of crime, transcribed from crime reports. This data has been provided by the Los Angeles Police Department. Based on these data sets, the question I would like to address is:
 
 How has the prevalence of certain types of crimes in Los Angeles changed since the start of the COVID-19 pandemic?
 
-This final project for PM 566 will examine how the prevalence of certain crimes have changed in LA county as a result of the pandemic and will do so through designing a number of interactive figures that will make it easier to visualize crime instances and characteristics of certain crimes that have taken place. It will also make it possible to detect and analyze certain patterns and contingencies that may be apparent.
+  This final project for PM 566 will examine how the prevalence of certain crimes have changed in LA county as a result of the pandemic and will do so through designing a number of interactive figures that will make it easier to visualize crime instances and characteristics of certain crimes that have taken place. It will also make it possible to detect and analyze certain patterns and contingencies that may be apparent.
 
 
 ## Methods
 
 **How to download data:**
-I obtained the data from the Los Angeles City Data website.  The datasets were fairly large, and so one would need to download them on their own in order to view and manipulate the files.  Below, are steps to downloading the datasets and reading them into R:
+  I obtained the data from the Los Angeles City Data website.  The datasets were fairly large, and so one would need to download them on their own in order to view and manipulate the files.  Below, are steps to downloading the datasets and reading them into R:
 
 1.	Go to the following links and click ‘export’ and then ‘csv’ in order to download the datasets as CSV files directly onto your computer:
+
 <https://data.lacity.org/Public-Safety/Crime-Data-from-2010-to-2019/63jg-8b9z>
+
 <https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8>
+
 2.	Rename the datasets to: “crimedata_2020topresent.csv” and 
 “crimedata_2010to2019.csv”
 3.	Then, you can read in the data using the codes a few lines below with the data.table::fread function.
 
 **Data cleaning and wrangling:**
-The datasets are extremely large with over a million entries each and 28 variables.  Therefore, I decided to focus on a few in particular when conducting analyses and creating figures.  I focused heavily on 'Crime Code Description', 'Date of Occurrence', and 'Region/Area'.  I delved deeper into these variables and looked into the different categories within them in order to determine changes in prevalence in crime before and after the start of COVID-19.
+  The datasets are extremely large with over a million entries each and 28 variables.  Therefore, I decided to focus on a few in particular when conducting analyses and creating figures.  I focused heavily on 'Crime Code Description', 'Date of Occurrence', and 'Region/Area'.  I delved deeper into these variables and looked into the different categories within them in order to determine changes in prevalence in crime before and after the start of COVID-19.
 
+  I took the 'DATE OCC' or 'date occurred' variable and converted that into year, so that each incidence of crime could be identified and categorized by the year it occurred (anywhere ranging from 2010 to 2022).  I went further as to pick two specific crime types to focus on, Vandalism and Stolen Vehicles.  With these variables, I grouped incidences of these crimes, separately, by year, so that we may be able to observe trends throughout the years.
 
-
+  I also created tables in which I could find the top 5 crime types for each dataset and considered the 2010-2019 as "pre-COVID-19" and the 2020-present dataset as "post-COVID-19.  After this, I manipulated the data so that I could see how prevalent the top 5 crimes were in different areas of Los Angeles county, pre and post-COVID-19.
 
 **Tools used for data exploration:**
-I utilized packages data.table, tidyverse, dplyr, plotly, DT, stringr, and knitr, in analyzing the data and creating corresponding tables and figures.  
-
-
-
+  I utilized packages data.table, tidyverse, dplyr, plotly, DT, stringr, and knitr, in analyzing the data and creating corresponding tables and figures.  
 
 
 ```{r, echo=FALSE, include=FALSE}
@@ -88,7 +89,7 @@ tail(crime202022)
 
 ## Results
 
-**Tables**
+**Tables** These tables highlight the top 5 crimes for the two different datasets: pre-COVID-19 (2010-2019) and post-COVID-19 (2020-present).  It is important to note that the numbers for table #2 are significantly smaller than that of table #1.  This is due to the fact that table #1 deals with 10 years of crime data and incidences while table #2 only has over 2 years of data to refer to.
 
 ```{r, echo=FALSE}
 CrimeType <-
@@ -114,7 +115,7 @@ knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crim
 
 **Figure 1. Crime Occurrence by Year**
 
-This interactive bar chart shows the number of crimes (total) that took place yearly from 2010-2022.  We see that rates of crime have remained relatively similar, but there is a spike in crime between 2020 to 2021 (during the COVID-19 pandemic).  There seems to be significantly less crime in 2022.  This is not due to the fact that crime rates had decreased.  It is important to note that the year 2022 is not over yet.  It would be worthwhile to revisit this data set at the end of the year and run the same analysis, in order to see the ending total of crime occurrences for 2022.
+  This interactive bar chart shows the number of crimes (total) that took place yearly from 2010-2022.  We see that rates of crime have remained relatively similar, but there is a spike in crime between 2020 to 2021 (during the COVID-19 pandemic).  There seems to be significantly less crime in 2022.  This is not due to the fact that crime rates had decreased.  It is important to note that the year 2022 is not over yet.  It would be worthwhile to revisit this data set at the end of the year and run the same analysis, in order to see the ending total of crime occurrences for 2022.
 
 ```{r, echo=FALSE, include=FALSE}
 library(stringr)
@@ -130,8 +131,7 @@ ggplotly(p)
 
 **Vandalism (Felony)**
 
-A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pandemic) was Vandalism.  This would be considered a felony for offenses that were $400 in damages and over and included all church vandalisms.  This is a scatterplot that represents occurrences of these sorts of vandalisms throughout the years.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any.  Vandalism occurrences were on the rise since the start of the pandemic and reached a high in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
-
+  A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pandemic) was Vandalism.  This would be considered a felony for offenses that were $400 in damages and over and included all church vandalisms.  This is a scatterplot that represents occurrences of these sorts of vandalisms throughout the years.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any.  Vandalism occurrences were on the rise since the start of the pandemic and reached a high in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
 
 **Figure 2. Occurrences of Vandalism Before and After COVID-19**
 ```{r, echo=FALSE}
@@ -144,7 +144,7 @@ ggplotly(p, width = 500 , height = 300)
 
 **Stolen Vehicles**
 
-The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a scatterplot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
+  The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a scatterplot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
 
 **Figure 3. Occurrences of Stolen Vehicles Before and After COVID-19**
 ```{r, echo=FALSE}
@@ -157,8 +157,7 @@ ggplotly(p, width = 500 , height = 300)
 
 **Top 5 Crimes by Area**
 
-The following figures shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.
-
+  The following figures shows the differing numbers of occurrence of the top 5 crimes for each area of LA county.  There are two tabs that represent the top 5 crimes for the areas for 2010-2019 and the same for 2020-present.  Through this figure, we can see how certain types of crimes may be more prevalent in certain areas than others and if there were overall more or less crime occurrences in different areas of LA county.  One can also navigate whether or not trends of crime significantly changed in these specific areas following the start of the COVID-19 pandemic.
 
 **Figure 4. Top 5 Crimes by Area (2010-19)**
 
@@ -183,3 +182,7 @@ ggplotly(p2_scatter , width = 1000 , height = 1200)
 ```
 
 ## Conclusion and Summary
+
+  We see that based on the results, rates of crime did spike in the middle of the COVID-19 pandemic, however, there was nothing outstanding compared to the pre-COVID years.  However, we do see that the nature of crime types did, indeed change following the start of the pandemic.  When we look at the top 5 crime types for both time periods, it is important to note that for the most part, crime types stayed the same.  But, following the start of pandemic, Vandalisms rose to the top 5 list.  Vandalisms were not in the top 5 for a pre-pandemic dataset.  This particular type of vandalism would be considered as a felony and results in $400 and up in damages and includes all church vandalisms.  In addition, we see that the #1 most common crime changed from being battery by simple assault to becoming stolen vehicles after the start of the pandemic.  
+  
+  It is important to reflect on the reasons why these changes in trends in crimes types occurred.  
