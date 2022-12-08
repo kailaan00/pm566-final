@@ -1,6 +1,9 @@
 This is my PM566 final project website home. The website is online at
 https://kailaan00.github.io/pm566-final/
 
+**Download the PDF report here:** 
+[**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/61e38a756077ad0afb38183880a0ae27db49b1c5/report.pdf)
+
 **Title:** "Change in Types of Crime Before and During the COVID-19 Pandemic"
 
 **Description:** 

@@ -12,7 +12,7 @@ output:
 ---
 
 **Download the whole PDF report:**
-[**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/33d85c41161bf45412b060a2f27d4e02c8813af3/report.pdf) 
+[**CLICK HERE**](https://rawcdn.githack.com/kailaan00/pm566-final/61e38a756077ad0afb38183880a0ae27db49b1c5/report.pdf) 
 
 <br>
 
@@ -118,7 +118,7 @@ knitr::kable(decreasing = TRUE, caption = "Prevalence of Different Types of Crim
 
 ### **Crime Occurrence by Year**
 
-This interactive bar chart shows the number of crimes (total) that took place yearly from 2010-2022.  We see that rates of crime have remained relatively similar, but there is a spike in crime between 2020 to 2021 (during the COVID-19 pandemic).  There seems to be significantly less crime in 2022.  This is not due to the fact that crime rates had decreased.  It is important to note that the year 2022 is not over yet.  It would be worthwhile to revisit this data set at the end of the year and run the same analysis, in order to see the ending total of crime occurrences for 2022.
+This interactive bar chart shows the number of crimes (total) that took place yearly from 2010-2022.  We see that rates of crime have remained relatively similar, but there is an uptick in crime between 2020 to 2021 (during the COVID-19 pandemic).  There seems to be significantly less crime in 2022.  This is not due to the fact that crime rates had decreased.  It is important to note that the year 2022 is not over yet.  It would be worthwhile to revisit this data set at the end of the year and run the same analysis, in order to see the ending total of crime occurrences for 2022.
 
 ```{r, echo=FALSE, include=FALSE}
 library(stringr)
@@ -135,7 +135,7 @@ ggplotly(p)
 
 ### **Vandalism (Felony)**
 
-A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pandemic) was Vandalism.  This would be considered a felony for offenses that were $400 in damages and over and included all church vandalisms.  This is a scatterplot that represents occurrences of these sorts of vandalisms throughout the years.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any.  Vandalism occurrences were on the rise since the start of the pandemic and reached a high in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
+A new crime type that arose in the Top 5 of 2020-2022 (during the COVID-19 pandemic) was Vandalism.  This would be considered a felony for offenses that were $400 in damages and over and included all church vandalisms.  This is a line plot that represents occurrences of these sorts of vandalisms throughout the years.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any.  Vandalism occurrences were on the rise since the start of the pandemic and reached a high in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
 
 ```{r, echo=FALSE}
 p <- crime %>% filter(`Crm Cd Desc` == "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)") %>%
@@ -149,7 +149,7 @@ ggplotly(p)
 
 ### **Stolen Vehicles**
 
-The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a scatterplot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
+The #1 most common crime after the start of the COVID-19 pandemic was stolen vehicles.  This is a line plot that represents occurrences of these sorts of vehicle theft throughout the years 2010-2022.  There is a red line to indicate the start of the COVID-19 pandemic, to make it easier to see where a difference lies, if any. We see that vehicle theft was experiencing a steep upwards trend since 2019 and reached an all-time high in 2021.  It seems as though many crime types experienced all-time highs in 2021.  The sudden drop in 2022 can also be attributed to the fact that the year 2022 is not over yet.
 
 ```{r, echo=FALSE}
 p <- crime %>% filter(`Crm Cd Desc` == "VEHICLE - STOLEN") %>%
